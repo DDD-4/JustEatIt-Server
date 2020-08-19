@@ -36,7 +36,7 @@ public class WebRestController {
         return "다잘먹";
     }
 
-    @GetMapping("/users/123456/userFriend")
+    @GetMapping("/users/123456/userfriend")
     public String getUserFriend(){
         return "{\n" +
                 "  \"userFriend\": [\n" +
@@ -47,7 +47,7 @@ public class WebRestController {
                 "}";
     }
 
-    @GetMapping(value = "/users/123456/userPreferInfo")
+    @GetMapping(value = "/users/123456/userpreferinfo")
     public String getUserPreferInfo(){
         return "{\n" +
                 "  \"userPreferInfo\": {\n" +
@@ -58,7 +58,7 @@ public class WebRestController {
                 "}}";
     }
 
-    @GetMapping(value = "/users/123456/userVisitInfo")
+    @GetMapping(value = "/users/123456/uservisitinfo")
     public String getUserVisitInfo(){
         return "{\n" +
                 "  \"userVisitInfo\": {\n" +
