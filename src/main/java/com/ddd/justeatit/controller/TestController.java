@@ -1,20 +1,14 @@
-package com.ddd.justeatit.web;
+package com.ddd.justeatit.controller;
 
-import com.ddd.justeatit.dto.users.UsersSaveRequestDto;
-import com.ddd.justeatit.service.UsersService;
-import lombok.AllArgsConstructor;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 @RestController
-@AllArgsConstructor
-public class WebRestController {
-    private UsersService usersService;
-    private Environment env;
+public class TestController {
+
+    //////////////////////////////////////
+    /////// test api /////////
+    //////////////////////////////////////
 
     @GetMapping("/hello")
     public String hello() {
@@ -77,19 +71,4 @@ public class WebRestController {
                 "  }\n" +
                 "}";
     }
-
-    @PostMapping("/users")
-    public Long saveUser(@RequestBody UsersSaveRequestDto dto){
-        return usersService.save(dto);
-    }
-
-
-
-    @GetMapping("/profile")
-    public String getProfile () {
-        return Arrays.stream(env.getActiveProfiles())
-                .findFirst()
-                .orElse("");
-    }
 }
-
