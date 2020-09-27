@@ -20,5 +20,4 @@ public class UserDto {
     private List<String> userFriend = new ArrayList<>();
     private List<String> userPreferInfo = new ArrayList<>();
     private Set<String> userVisitInfo = new HashSet<>();
-
 }
