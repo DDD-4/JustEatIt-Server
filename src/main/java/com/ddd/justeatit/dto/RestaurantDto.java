@@ -14,13 +14,6 @@ public class RestaurantDto {
     private String restaurantType;
     private String restaurantWeight;
     private Integer restaurantPrice;
-
-//    public RestaurantDto(String restaurantId, String restaurantName, String restaurantAddress, String restaurantType, String restaurantWeight, Integer restaurantPrice) {
-//        this.restaurantId = restaurantId;
-//        this.restaurantName = restaurantName;
-//        this.restaurantAddress = restaurantAddress;
-//        this.restaurantType = restaurantType;
-//        this.restaurantWeight = restaurantWeight;
-//        this.restaurantPrice = restaurantPrice;
-//    }
+    private Double restaurantXcord;
+    private Double restaurantYcord;
 }

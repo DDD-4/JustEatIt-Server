@@ -8,13 +8,15 @@ import java.sql.SQLException;
 
 public class RestaurantMapper implements RowMapper<RestaurantDto> {
     public RestaurantDto mapRow(ResultSet rs, int rowNum) throws SQLException {
-        String restaurantId = rs.getString("restaurant_id");
-        String restaurantName = rs.getString("restaurant_name");
-        String restaurantAddress = rs.getString("restaurant_adr");
-        String restaurantType = rs.getString("restaurant_type");
-        String restaurantWeight = rs.getString("restaurant_weight");
-        Integer restaurantPrice = rs.getInt("restaurant_price");
+        String restaurantId = rs.getString("restaurantId");
+        String restaurantName = rs.getString("restaurantName");
+        String restaurantAddress = rs.getString("restaurantAdr");
+        String restaurantType = rs.getString("restaurantType");
+        String restaurantWeight = rs.getString("restaurantWeight");
+        Integer restaurantPrice = rs.getInt("restaurantPrice");
+        Double restaurantXcord = rs.getDouble("restaurantXcord");
+        Double restaurantYcord = rs.getDouble("restaurantYcord");
 
-        return new RestaurantDto(restaurantId, restaurantName, restaurantAddress, restaurantType, restaurantWeight, restaurantPrice);
+        return new RestaurantDto(restaurantId, restaurantName, restaurantAddress, restaurantType, restaurantWeight, restaurantPrice, restaurantXcord, restaurantYcord);
     }
 }

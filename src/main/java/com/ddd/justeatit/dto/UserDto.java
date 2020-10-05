@@ -17,8 +17,8 @@ public class UserDto {
     private String userName;
     private String userNickName;
     private String userEmail;
+    private Integer userBanDay;
     private List<String> userFriend = new ArrayList<>();
     private List<String> userPreferInfo = new ArrayList<>();
     private Set<String> userVisitInfo = new HashSet<>();
-
 }
