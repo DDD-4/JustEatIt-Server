@@ -1,10 +1,18 @@
 package com.ddd.justeatit.dao;
 
+import com.ddd.justeatit.dao.mapper.RestaurantMapper;
 import com.ddd.justeatit.dto.RestaurantDto;
+import com.ddd.justeatit.dto.UserDto;
+import com.ddd.justeatit.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
 
 @Repository
 public class RestaurantDao {
@@ -12,8 +20,32 @@ public class RestaurantDao {
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private NamedParameterJdbcOperations jdbc;
+    @Autowired
+    private RestaurantService restaurantService;
 
     public int createRestaurant(RestaurantDto Restaurant) {
         return 0;
+    }
+
+    public RestaurantDto readRestaurantById(String restaurantId){
+        try {
+            SqlParameterSource params = new MapSqlParameterSource("restaurantId", restaurantId);
+            return jdbc.queryForObject("select restaurantName, restaurantId, restaurantAddress, " +
+                    "restaurantType, restaurantWeight, restaurantPrice, restaurantXcord, restaurantYcord " +
+                    "from restaurant where restaurantId=:restaurantId", params, new RestaurantMapper());
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public RestaurantDto readRestaurantByFriends(ArrayList<String> friends) {
+        try {
+            for (String friend : friends) {
+                // TODO: get friend's flavor and find restaurant
+            }
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+        return null;
     }
 }
