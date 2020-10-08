@@ -21,8 +21,12 @@ public class UserDao {
     private NamedParameterJdbcOperations jdbc;
 
     public int createUser(UserDto user) {
-        SqlParameterSource params = new BeanPropertySqlParameterSource(user);
-        return jdbc.update("insert into user (userId, userName, userNickName, userEmail, userFriend, userPreferInfo, userVisitInfo) values (:userId, :userName, :userNickName, :userEmail, :userFriend, :userPreferInfo, :userVisitInfo)", params);
+        try {
+            SqlParameterSource params = new BeanPropertySqlParameterSource(user);
+            return jdbc.update("insert into user (userId, userName, userNickName, userEmail, userFriend, userPreferInfo, userVisitInfo) values (:userId, :userName, :userNickName, :userEmail, :userFriend, :userPreferInfo, :userVisitInfo)", params);
+        } catch (EmptyResultDataAccessException e) {
+            return -1;
+        }
     }
 
     public UserDto readUserByUserId(String userId) {
