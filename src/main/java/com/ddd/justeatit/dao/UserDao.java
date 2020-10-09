@@ -38,6 +38,16 @@ public class UserDao {
             return null;
         }
     }
+    
+    public int deleteUser(String userId) {
+        try {
+            SqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+            return jdbc.update("delete into user (userId, userName, userNickName, userEmail, userFriend, userPreferInfo, userVisitInfo) values (:userId, :userName, :userNickName, :userEmail, :userFriend, :userPreferInfo, :userVisitInfo)", params);
+        } catch (EmptyResultDataAccessException e) {
+            return -1;
+        }
+
+    }
 
     public List<UserDto> readAllUsers() {
         return jdbcTemplate.query("select userId, userName, userNickName, userFriend, userPreferInfo, userVisitInfo from user", new UserMapper());
