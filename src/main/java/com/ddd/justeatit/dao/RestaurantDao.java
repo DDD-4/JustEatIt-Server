@@ -2,7 +2,7 @@ package com.ddd.justeatit.dao;
 
 import com.ddd.justeatit.dao.mapper.RestaurantMapper;
 import com.ddd.justeatit.dto.RestaurantDto;
-import com.ddd.justeatit.dto.UserDto;
+import com.ddd.justeatit.dto.UserPreferInfoDto;
 import com.ddd.justeatit.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -27,7 +27,7 @@ public class RestaurantDao {
         return 0;
     }
 
-    public RestaurantDto readRestaurantById(String restaurantId){
+    public RestaurantDto readRestaurantByRestaurantId(String restaurantId){
         try {
             SqlParameterSource params = new MapSqlParameterSource("restaurantId", restaurantId);
             return jdbc.queryForObject("select restaurantName, restaurantId, restaurantAddress, " +
@@ -38,14 +38,19 @@ public class RestaurantDao {
         }
     }
 
-    public RestaurantDto readRestaurantByFriends(ArrayList<String> friends) {
+    public RestaurantDto readRestaurantByUserPreferInfo(UserPreferInfoDto userPreferInfoDto) {
         try {
-            for (String friend : friends) {
-                // TODO: get friend's flavor and find restaurant
-            }
+            SqlParameterSource params = new MapSqlParameterSource().addValue("weight", userPreferInfoDto.getFoodWeight())
+                    .addValue("category",userPreferInfoDto.getFoodCategory())
+                    .addValue("priceMin",userPreferInfoDto.getFoodPriceMin())
+                    .addValue("priceMax",userPreferInfoDto.getFoodPriceMax());
+
+            return jdbc.queryForObject("select restaurantName, restaurantId, restaurantAddress, " +
+                    "restaurantType, restaurantWeight, restaurantPrice, restaurantXcord, restaurantYcord " +
+                    "from restaurant where restaurantWeight in (:weight) and restaurantCategory in (:category)" +
+                    "and restaurantPrice between :priceMin and :priceMax", params, new RestaurantMapper());
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
-        return null;
     }
 }
