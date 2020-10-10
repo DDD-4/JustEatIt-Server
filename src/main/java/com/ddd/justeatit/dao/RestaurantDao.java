@@ -12,8 +12,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-
 @Repository
 public class RestaurantDao {
     @Autowired
@@ -48,7 +46,7 @@ public class RestaurantDao {
             return jdbc.queryForObject("select restaurantName, restaurantId, restaurantAddress, " +
                     "restaurantType, restaurantWeight, restaurantPrice, restaurantXcord, restaurantYcord " +
                     "from restaurant where restaurantWeight in (:weight) and restaurantCategory in (:category)" +
-                    "and restaurantPrice between :priceMin and :priceMax", params, new RestaurantMapper());
+                    "and restaurantPrice between :priceMin and :priceMax order by rand() limit 1", params, new RestaurantMapper());
         } catch (EmptyResultDataAccessException e) {
             return null;
         }

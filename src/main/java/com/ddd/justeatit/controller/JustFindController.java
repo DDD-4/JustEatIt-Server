@@ -24,7 +24,7 @@ public class JustFindController {
 
     @GetMapping()
     @ResponseBody
-    public ResponseEntity<RestaurantDto> readRestaurant(@RequestParam(value="users") List<String> users) throws Exception {
+    public ResponseEntity<RestaurantDto> readRestaurant(@RequestParam(value="users") List<String> users) {
         List<UserPreferInfoDto> userPreferInfoDtos = new ArrayList<>();
 
         HashMap<String, Integer> commonFoodWeight = new HashMap<>();
@@ -83,6 +83,15 @@ public class JustFindController {
         });
 
         return restaurantService.readRestaurantByUserPreferInfo(new UserPreferInfoDto(resultCommonFoodWeight, resultCommonFoodCategory, commonFoodPriceMin, commonFoodPriceMax));
+    }
+
+    @GetMapping()
+    @ResponseBody
+    public ResponseEntity<RestaurantDto> readRestaurantByCondition(@RequestParam(value="weight") List<String> weights,
+                                                                   @RequestParam(value="type") List<String> types,
+                                                                   @RequestParam(value="priceMin") Integer priceMin,
+                                                                   @RequestParam(value="priceMax") Integer priceMax) {
+        return restaurantService.readRestaurantByUserPreferInfo(new UserPreferInfoDto(weights, types, priceMin, priceMax));
     }
 }
 

@@ -25,6 +25,5 @@ public class RestaurantService {
     public ResponseEntity<RestaurantDto> readRestaurantByUserPreferInfo(UserPreferInfoDto userPreferInfoDto) {
         RestaurantDto restaurantDto = restaurantDao.readRestaurantByUserPreferInfo(userPreferInfoDto);
         return new ResponseEntity<>(restaurantDto, HttpStatus.OK);
-
     }
 }
