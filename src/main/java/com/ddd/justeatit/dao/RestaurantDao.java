@@ -18,8 +18,6 @@ public class RestaurantDao {
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private NamedParameterJdbcOperations jdbc;
-    @Autowired
-    private RestaurantService restaurantService;
 
     public int createRestaurant(RestaurantDto Restaurant) {
         return 0;
