@@ -22,7 +22,7 @@ public class JustFindController {
     @Autowired
     private UserService userService;
 
-    @GetMapping()
+    @GetMapping("/friend")
     @ResponseBody
     public ResponseEntity<RestaurantDto> readRestaurant(@RequestParam(value="users") List<String> users) {
         List<UserPreferInfoDto> userPreferInfoDtos = new ArrayList<>();
@@ -64,24 +64,23 @@ public class JustFindController {
             for (Weight weight : Weight.values()) {
                 resultCommonFoodWeight.add(weight.getValue());
             }
+        } else {
+            commonFoodWeight.forEach((k, v) -> {
+                if (v == userPreferInfoDtos.size())
+                    resultCommonFoodWeight.add(k);
+            });
         }
 
         if (resultCommonFoodCategory.isEmpty()) {
             for (Category category : Category.values()) {
                 resultCommonFoodCategory.add(category.getValue());
             }
+        } else {
+            commonFoodCategory.forEach((k, v) -> {
+                if (v == userPreferInfoDtos.size())
+                    resultCommonFoodCategory.add(k);
+            });
         }
-
-        commonFoodWeight.forEach((k, v) -> {
-            if (v == userPreferInfoDtos.size())
-                resultCommonFoodWeight.add(k);
-        });
-
-        commonFoodCategory.forEach((k, v) -> {
-            if (v == userPreferInfoDtos.size())
-                resultCommonFoodCategory.add(k);
-        });
-
         return restaurantService.readRestaurantByUserPreferInfo(new UserPreferInfoDto(resultCommonFoodWeight, resultCommonFoodCategory, commonFoodPriceMin, commonFoodPriceMax));
     }
 
