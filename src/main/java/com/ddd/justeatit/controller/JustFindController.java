@@ -4,8 +4,6 @@ import com.ddd.justeatit.dto.RestaurantDto;
 import com.ddd.justeatit.dto.UserPreferInfoDto;
 import com.ddd.justeatit.service.RestaurantService;
 import com.ddd.justeatit.service.UserService;
-import com.ddd.justeatit.Util.*;
-import com.ddd.justeatit.service.Weight;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
