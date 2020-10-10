@@ -100,7 +100,6 @@ enum Weight {
     }
 }
 
-
 @Getter
 enum Category {
     한식("한식"),

@@ -17,8 +17,6 @@ public class RestaurantService {
     @Autowired
     private RestaurantDao restaurantDao;
 
-
-
     public ResponseEntity<RestaurantDto> readRestaurantByRestaurantId(String restaurantId) {
         RestaurantDto restaurantDto = restaurantDao.readRestaurantByRestaurantId(restaurantId);
         return new ResponseEntity<>(restaurantDto, HttpStatus.OK);
