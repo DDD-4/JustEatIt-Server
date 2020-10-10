@@ -27,7 +27,7 @@ public class RestaurantDao {
         try {
             SqlParameterSource params = new MapSqlParameterSource("restaurantId", restaurantId);
             return jdbc.queryForObject("select restaurantName, restaurantId, restaurantAddress, " +
-                    "restaurantType, restaurantWeight, restaurantPrice, restaurantXcord, restaurantYcord " +
+                    "restaurantCategory, restaurantWeight, restaurantPrice, restaurantXcord, restaurantYcord " +
                     "from restaurant where restaurantId=:restaurantId", params, new RestaurantMapper());
         } catch (EmptyResultDataAccessException e) {
             return null;
@@ -42,7 +42,7 @@ public class RestaurantDao {
                     .addValue("priceMax",userPreferInfoDto.getFoodPriceMax());
 
             return jdbc.queryForObject("select restaurantName, restaurantId, restaurantAddress, " +
-                    "restaurantType, restaurantWeight, restaurantPrice, restaurantXcord, restaurantYcord " +
+                    "restaurantCategory, restaurantWeight, restaurantPrice, restaurantXcord, restaurantYcord " +
                     "from restaurant where restaurantWeight in (:weight) and restaurantCategory in (:category)" +
                     "and restaurantPrice between :priceMin and :priceMax order by rand() limit 1", params, new RestaurantMapper());
         } catch (EmptyResultDataAccessException e) {

@@ -11,7 +11,7 @@ public class RestaurantDto {
     private String restaurantId;
     private String restaurantName;
     private String restaurantAddress;
-    private String restaurantType;
+    private String restaurantCategory;
     private String restaurantWeight;
     private Integer restaurantPrice;
     private Double restaurantXcord;
