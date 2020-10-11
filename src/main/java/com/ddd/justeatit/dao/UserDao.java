@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -52,7 +53,7 @@ public class UserDao {
     public int deleteUser(String userId) {
         try {
             SqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
-            return jdbc.update("delete into user (userId, userName, userNickName, userEmail, userFriend, userPreferInfo, userVisitInfo) values (:userId, :userName, :userNickName, :userEmail, :userFriend, :userPreferInfo, :userVisitInfo)", params);
+            return jdbc.update("delete from user where userId=:userId", params);
         } catch (EmptyResultDataAccessException e) {
             return -1;
         }
@@ -74,6 +75,37 @@ public class UserDao {
                 friendId = new StringBuilder(friendId).insert(0, "[").append("]").toString();
             } else {
                 friendId = new StringBuilder(currentFriends).insert(currentFriends.length()-1, "," + friendId).toString();
+            }
+
+            SqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId)
+                    .addValue("friendId", friendId);
+            return jdbc.update("update user SET friendId = :friendId WHERE userId = :userId", params);
+        } catch (EmptyResultDataAccessException e) {
+            return -1;
+        }
+    }
+
+    public int deleteFriend(String userId, String friendId) {
+        try {
+            String currentFriends = readUserFriendsByUserId(userId);
+            if (currentFriends == null) {
+                // there is no userId
+                return -1;
+            }
+
+            if (currentFriends.length() == 2)  {
+                return -2;
+            } else {
+                if (currentFriends.contains(friendId)) {
+                    String[] friends = currentFriends.substring(1, currentFriends.length()-1).split(",");
+                    ArrayList<String> postFriends = new ArrayList<>();
+                    for (String friend : friends) {
+                        if (!friend.equals(friendId)) {
+                            postFriends.add(friend);
+                        }
+                    }
+                    friendId = new StringBuilder(String.join(",", postFriends)).insert(0, "[").append("]").toString();
+                }
             }
 
             SqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId)

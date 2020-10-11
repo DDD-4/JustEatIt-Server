@@ -51,6 +51,11 @@ public class UserController {
         return userService.addUserFriend(userId, friendId);
     }
 
+    @DeleteMapping(value = "/{userId}")
+    public ResponseEntity<Integer> deleteUserFriend(@PathVariable("userId") String userId, @RequestParam(value="friendId") String friendId) {
+        return userService.deleteUserFriend(userId, friendId);
+    }
+
     @GetMapping(value = "/{userId}/userPreferInfo")
     public ResponseEntity<UserPreferInfoDto> readUserPreferInfo(@PathVariable("userId") String userId, HttpServletRequest req) throws Exception {
         return userService.readUserPreferInfoByUserId(userId);
