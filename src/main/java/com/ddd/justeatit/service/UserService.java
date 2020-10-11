@@ -26,6 +26,10 @@ public class UserService {
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
+    public ResponseEntity<Integer> createUser(UserDto userDto) {
+        return new ResponseEntity<>(userDao.createUser(userDto), HttpStatus.OK);
+    }
+
     public ResponseEntity<List<String>> readUserFriendByUserId(String userId) {
         UserDto userDto = userDao.readUserByUserId(userId);
         List<String> userFriends = userDto.getUserFriend();
@@ -38,9 +42,13 @@ public class UserService {
         return new ResponseEntity<>(userPreferInfo, HttpStatus.OK);
     }
 
-    public ResponseEntity<UserVisitInfoDto> readUserVisitInfoByUserId(String userId) {
+    public ResponseEntity<ArrayList<UserVisitInfoDto>> readUserVisitInfoByUserId(String userId) {
         UserDto userDto = userDao.readUserByUserId(userId);
-        UserVisitInfoDto userVisitInfo = userDto.getUserVisitInfo();
-        return new ResponseEntity<>(userVisitInfo, HttpStatus.OK);
+        ArrayList<UserVisitInfoDto> userVisitInfos = (ArrayList<UserVisitInfoDto>) userDto.getUserVisitInfo();
+        return new ResponseEntity<>(userVisitInfos, HttpStatus.OK);
+    }
+
+    public ResponseEntity<Integer> addUserFriend(String userId, String friendId) {
+        return new ResponseEntity<>(userDao.addFriend(userId, friendId), HttpStatus.OK);
     }
 }

@@ -7,6 +7,7 @@ import com.ddd.justeatit.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -19,8 +20,15 @@ public class RestaurantDao {
     @Autowired
     private NamedParameterJdbcOperations jdbc;
 
-    public int createRestaurant(RestaurantDto Restaurant) {
-        return 0;
+    public int createRestaurant(RestaurantDto restaurant) {
+        SqlParameterSource params = new BeanPropertySqlParameterSource(restaurant);
+        return jdbc.update(
+                "INSERT INTO restaurant (restaurantName, restaurantId, " +
+                        "restaurantAddress, restaurantCategory, restaurantWeight, " +
+                        "restaurantPrice, restaurantXcord, restaurantYcord) " +
+                        "VALUES (:restaurantName, :restaurantId, :restaurantAddress, " +
+                        ":restaurantCategory, :restaurantWeight, :restaurantPrice, :restaurantXcord, :restaurantYcord)",
+                params);
     }
 
     public RestaurantDto readRestaurantByRestaurantId(String restaurantId){
