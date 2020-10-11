@@ -2,6 +2,7 @@ package com.ddd.justeatit.dao;
 
 import com.ddd.justeatit.dao.mapper.UserMapper;
 import com.ddd.justeatit.dto.UserDto;
+import com.ddd.justeatit.dto.UserPreferInfoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -111,6 +112,17 @@ public class UserDao {
             SqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId)
                     .addValue("friendId", friendId);
             return jdbc.update("update user SET friendId = :friendId WHERE userId = :userId", params);
+        } catch (EmptyResultDataAccessException e) {
+            return -1;
+        }
+    }
+
+    public int updatePreferInfo(String userId, UserPreferInfoDto userPreferInfoDto) {
+        try {
+            String userPreferInfo = userPreferInfoDto.toString();
+            SqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId)
+                    .addValue("userPreferInfo", userPreferInfo);
+            return jdbc.update("update user SET userPreferInfo = :userPreferInfo where userId=:userId", params);
         } catch (EmptyResultDataAccessException e) {
             return -1;
         }

@@ -61,6 +61,11 @@ public class UserController {
         return userService.readUserPreferInfoByUserId(userId);
     }
 
+    @PostMapping(value = "/{userId}/userPreferInfo")
+    public ResponseEntity<UserPreferInfoDto> readUserPreferInfo(@PathVariable("userId") String userId, @RequestBody() UserPreferInfoDto userPreferInfoDto , HttpServletRequest req) throws Exception {
+        return userService.updateUserPreferInfoByUserId(userId, userPreferInfoDto);
+    }
+
     @GetMapping(value = "/{userId}/userVisitInfo")
     public ResponseEntity<ArrayList<UserVisitInfoDto>> readUserVisitInfo(@PathVariable("userId") String userId, HttpServletRequest req) throws Exception {
         return userService.readUserVisitInfoByUserId(userId);

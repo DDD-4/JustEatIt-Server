@@ -55,4 +55,8 @@ public class UserService {
     public ResponseEntity<Integer> deleteUserFriend(String userId, String friendId) {
         return new ResponseEntity<>(userDao.deleteFriend(userId, friendId), HttpStatus.OK);
     }
+
+    public ResponseEntity<Integer> updateUserPreferInfoByUserId(String userId, UserPreferInfoDto userPreferInfoDto) {
+        return new ResponseEntity<>(userDao.updatePreferInfo(userId, userPreferInfoDto), HttpStatus.OK);
+    }
 }
