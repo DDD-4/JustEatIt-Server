@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,5 +18,5 @@ public class UserDto {
     private Integer userBanDay;
     private List<String> userFriend = new ArrayList<>();
     private UserPreferInfoDto userPreferInfo = new UserPreferInfoDto();
-    private UserVisitInfoDto userVisitInfo = new UserVisitInfoDto();
+    private List<UserVisitInfoDto> userVisitInfo = new ArrayList<>();
 }
