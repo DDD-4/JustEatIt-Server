@@ -19,11 +19,6 @@ public class JsonParser {
         return result;
     }
 
-    public HashSet<String> string2set(String target) {
-        HashSet<String> result = gson.fromJson(target, new TypeToken<HashSet<String>>(){}.getType());
-        return result;
-    }
-
     public static JSONObject string2json(String target) {
         return new JSONObject(target);
     }
