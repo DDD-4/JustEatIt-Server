@@ -1,11 +1,9 @@
 package com.ddd.justeatit.controller;
 
-import com.ddd.justeatit.dto.RestaurantDto;
 import com.ddd.justeatit.dto.UserDto;
 import com.ddd.justeatit.dto.UserPreferInfoDto;
 import com.ddd.justeatit.dto.UserVisitInfoDto;
 import com.ddd.justeatit.service.UserService;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -62,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/{userId}/userPreferInfo")
-    public ResponseEntity<UserPreferInfoDto> readUserPreferInfo(@PathVariable("userId") String userId, @RequestBody() UserPreferInfoDto userPreferInfoDto , HttpServletRequest req) throws Exception {
+    public ResponseEntity<Integer> readUserPreferInfo(@PathVariable("userId") String userId, @RequestBody() UserPreferInfoDto userPreferInfoDto , HttpServletRequest req) throws Exception {
         return userService.updateUserPreferInfoByUserId(userId, userPreferInfoDto);
     }
 

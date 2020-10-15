@@ -3,7 +3,6 @@ package com.ddd.justeatit.dao;
 import com.ddd.justeatit.dao.mapper.RestaurantMapper;
 import com.ddd.justeatit.dto.RestaurantDto;
 import com.ddd.justeatit.dto.UserPreferInfoDto;
-import com.ddd.justeatit.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;

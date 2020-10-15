@@ -26,7 +26,6 @@ public class JustFindController {
     @ResponseBody
     public ResponseEntity<RestaurantDto> readRestaurant(@RequestParam(value="users") List<String> users) {
         List<UserPreferInfoDto> userPreferInfoDtos = new ArrayList<>();
-
         HashMap<String, Integer> commonFoodWeight = new HashMap<>();
         HashMap<String, Integer> commonFoodCategory = new HashMap<>();
         Integer commonFoodPriceMin = 0;

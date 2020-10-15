@@ -1,13 +1,10 @@
 package com.ddd.justeatit.dto;
 
 import com.ddd.justeatit.Util.JsonParser;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonBooleanFormatVisitor;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.json.JSONArray;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

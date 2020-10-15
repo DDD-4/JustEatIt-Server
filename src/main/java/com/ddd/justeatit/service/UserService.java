@@ -5,7 +5,6 @@ import com.ddd.justeatit.dto.UserDto;
 import com.ddd.justeatit.dto.UserPreferInfoDto;
 import com.ddd.justeatit.dto.UserVisitInfoDto;
 import lombok.AllArgsConstructor;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
