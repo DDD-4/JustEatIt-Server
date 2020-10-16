@@ -19,12 +19,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    @PostMapping
-//    @ResponseBody
-//    public int createUser(@RequestBody JSONObject user, HttpServletRequest req) throws Exception {
-//        userService.createUser(user);
-//    }
-
     @GetMapping(value = "/{userId}")
     @ResponseBody
     public ResponseEntity<UserDto> readUser(@PathVariable("userId") String userId, HttpServletRequest req) throws Exception {
