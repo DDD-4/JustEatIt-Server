@@ -86,10 +86,10 @@ public class JustFindController {
     @GetMapping()
     @ResponseBody
     public ResponseEntity<RestaurantDto> readRestaurantByCondition(@RequestParam(value="weight") List<String> weights,
-                                                                   @RequestParam(value="type") List<String> types,
+                                                                   @RequestParam(value="category") List<String> categories,
                                                                    @RequestParam(value="priceMin") Integer priceMin,
                                                                    @RequestParam(value="priceMax") Integer priceMax) {
-        return restaurantService.readRestaurantByUserPreferInfo(new UserPreferInfoDto(weights, types, priceMin, priceMax));
+        return restaurantService.readRestaurantByUserPreferInfo(new UserPreferInfoDto(weights, categories, priceMin, priceMax));
     }
 }
 
