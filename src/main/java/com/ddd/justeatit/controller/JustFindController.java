@@ -22,6 +22,7 @@ public class JustFindController {
     @Autowired
     private UserService userService;
 
+    // [DEPRECATED]
     @GetMapping("/friend")
     @ResponseBody
     public ResponseEntity<RestaurantDto> readRestaurant(@RequestParam(value="users") List<String> users) {
