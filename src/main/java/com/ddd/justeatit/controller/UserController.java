@@ -25,7 +25,7 @@ public class UserController {
         return userService.readUserByUserId(userId);
     }
 
-    @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Integer> createUser(@RequestBody() UserDto userDto,
                                                      HttpServletRequest req) throws Exception {
@@ -60,5 +60,10 @@ public class UserController {
     @GetMapping(value = "/{userId}/userVisitInfo")
     public ResponseEntity<ArrayList<UserVisitInfoDto>> readUserVisitInfo(@PathVariable("userId") String userId, HttpServletRequest req) throws Exception {
         return userService.readUserVisitInfoByUserId(userId);
+    }
+
+    @GetMapping(value = "/login/{userId}/{userToken}")
+    public ResponseEntity<Integer> loginUser(@PathVariable("userId") String userId, @PathVariable("userToken") String userToken) {
+        return userService.loginUser(userId, userToken);
     }
 }

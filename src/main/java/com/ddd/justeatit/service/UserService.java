@@ -58,4 +58,10 @@ public class UserService {
     public ResponseEntity<Integer> updateUserPreferInfoByUserId(String userId, UserPreferInfoDto userPreferInfoDto) {
         return new ResponseEntity<>(userDao.updatePreferInfo(userId, userPreferInfoDto), HttpStatus.OK);
     }
+
+    public ResponseEntity<Integer> loginUser(String userId, String userToken) {
+        Integer result = userDao.readUserByLoginInfo(userId, userToken);
+        if(result == 0) return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
+    }
 }

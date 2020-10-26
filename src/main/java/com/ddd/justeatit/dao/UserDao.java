@@ -127,4 +127,17 @@ public class UserDao {
             return -1;
         }
     }
+
+    public Integer readUserByLoginInfo(String userId, String userToken) {
+        try {
+            SqlParameterSource params = new MapSqlParameterSource().addValue("userId", userId);
+            String realToken = jdbc.queryForObject("select userToken from user where userId=:userId", params, new String().getClass());
+            if (realToken.equals(userToken)) {
+                return 0;
+            }
+            return 1;
+        } catch (EmptyResultDataAccessException e) {
+            return -1;
+        }
+    }
 }
