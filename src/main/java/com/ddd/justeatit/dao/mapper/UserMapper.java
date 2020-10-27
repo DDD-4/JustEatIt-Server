@@ -17,6 +17,7 @@ public class UserMapper implements RowMapper<UserDto> {
 
     public UserDto mapRow(ResultSet rs, int rowNum) throws SQLException {
         String userId = rs.getString("userId");
+        String userToken = rs.getString("userToken");
         String userName = rs.getString("userName");
         String userNickName = rs.getString("userNickName");
         String userEmail = rs.getString("userEmail");
@@ -30,6 +31,6 @@ public class UserMapper implements RowMapper<UserDto> {
             userVisitInfo.add(new UserVisitInfoDto(object.toString()));
         }
 
-        return new UserDto(userId, userName, userNickName, userEmail, userBanDay, userFriend, userPreferInfo, userVisitInfo);
+        return new UserDto(userId, userToken, userName, userNickName, userEmail, userBanDay, userFriend, userPreferInfo, userVisitInfo);
     }
 }

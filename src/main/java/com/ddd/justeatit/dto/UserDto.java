@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 public class UserDto {
     private String userId;
+    private String userToken;
     private String userName;
     private String userNickName;
     private String userEmail;

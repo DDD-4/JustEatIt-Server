@@ -135,9 +135,9 @@ public class UserDao {
             if (realToken.equals(userToken)) {
                 return 0;
             }
-            return 1;
         } catch (EmptyResultDataAccessException e) {
             return -1;
         }
+        return 1;
     }
 }
