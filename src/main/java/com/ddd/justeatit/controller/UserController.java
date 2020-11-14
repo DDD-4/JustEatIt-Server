@@ -61,9 +61,4 @@ public class UserController {
     public ResponseEntity<ArrayList<UserVisitInfoDto>> readUserVisitInfo(@PathVariable("userId") String userId, HttpServletRequest req) throws Exception {
         return userService.readUserVisitInfoByUserId(userId);
     }
-
-    @GetMapping(value = "/login/{userId}/{userToken}")
-    public ResponseEntity<Integer> loginUser(@PathVariable("userId") String userId, @PathVariable("userToken") String userToken) {
-        return userService.loginUser(userId, userToken);
-    }
 }
