@@ -64,4 +64,8 @@ public class UserService {
         if(result == 0) return new ResponseEntity<>(result, HttpStatus.OK);
         return new ResponseEntity<>(result, HttpStatus.NOT_FOUND);
     }
+
+    public ResponseEntity<String> readUserToken(String userId) {
+        return new ResponseEntity<>(userDao.readTokenById(userId), HttpStatus.OK);
+    }
 }

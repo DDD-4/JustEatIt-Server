@@ -140,4 +140,9 @@ public class UserDao {
         }
         return 1;
     }
+
+    public String readTokenById(String userId) {
+        // TODO: return token by id
+        return "";
+    }
 }
